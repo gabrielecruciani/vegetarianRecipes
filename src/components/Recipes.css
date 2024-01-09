@@ -1,0 +1,59 @@
+
+.recipe-gallery {
+  display: flex;
+  overflow-x: hidden;
+  margin: 80px 50px 10px 50px;
+  caret-color: transparent;
+}
+
+.recipe-section {
+    position: relative;
+  }
+
+.recipe-carousel {
+  display: flex;
+  position: relative;
+  transition: transform 0.5s ease-in-out;
+}
+
+.recipe-item {
+  flex: 0 0 calc(25% - 16px); /* Larghezza delle singole ricette con margin */
+  margin-right: 30px; /* Aggiungi margin tra le ricette */
+  box-sizing: border-box; /* Assicura che il padding/margin non aumenti la larghezza totale */
+  position: relative;
+  text-align: center;
+}
+
+/* Altri stili per .recipe-item come immagine e titolo */
+.recipe-item img {
+  max-width: 100%;
+  height: auto;
+}
+
+.recipe-item h3 {
+  margin-top: 8px;
+}
+
+.recipe-arrow {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 30px;
+  background-color: rgba(0, 0, 0, 0.116);
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  cursor: pointer;
+  user-select: none;
+}
+
+.recipe-arrow-left {
+  left: 0;
+}
+
+.recipe-arrow-right {
+  right: 0;
+}
