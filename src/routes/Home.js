@@ -7,44 +7,61 @@ const Home = () => {
   const [recipes, setRecipes] = useState([]);
   const [shuffledRecipes, setShuffledRecipes] = useState([]);
 
+  const getRecipes = async () => {
+    try {
+      const apiKey = 'daca3440ea2a4e63a9a1ed61b43285db';
+      const apiUrl = `https://api.spoonacular.com/recipes/complexSearch?diet=vegetarian&apiKey=${apiKey}`;
+
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+
+      setRecipes(data.results);
+    } catch (error) {
+      console.error('Errore nel recupero delle ricette:', error);
+    }
+  };
+
   useEffect(() => {
-    const getRecipesBySection = async (section) => {
+    if (recipes.length === 0) {
+      getRecipes();
+    }
 
-      try {
-        const apiKey = 'daca3440ea2a4e63a9a1ed61b43285db';
-        const apiUrl = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}`;
+    // const getRecipesBySection = async (params) => {
 
-        let params = {};
+    //   try {
+    //     const apiKey = 'daca3440ea2a4e63a9a1ed61b43285db';
+    //     const apiUrl = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}`;
 
-        switch (section) {
-          case 'mainCourse':
-            params.diet = 'vegetarian';
-            params.type = 'mainCourse';
-            break;
-          case 'sideDish':
-            params.diet = 'vegetarian';
-            params.type = 'sideDish';
-            break;
-          case 'appetizer':
-            params.diet = 'vegetarian';
-            params.type = 'appetizer';
-            break;
+    //     let params = {};
+
+    //     switch (section) {
+    //       case 'mainCourse':
+    //         params.diet = 'vegetarian';
+    //         params.type = 'mainCourse';
+    //         break;
+    //       case 'sideDish':
+    //         params.diet = 'vegetarian';
+    //         params.type = 'sideDish';
+    //         break;
+    //       case 'appetizer':
+    //         params.diet = 'vegetarian';
+    //         params.type = 'appetizer';
+    //         break;
           
-          default:
-            break;
-        }
-        // Effettua la richiesta API
-        const response = await fetch(`${apiUrl}&${new URLSearchParams(params)}`);
-        const data = await response.json();
-        setRecipes(data.results);
-      } catch (error) {
-        console.error('Errore nel recupero delle ricette:', error);
-      }
-    };
+    //       default:
+    //         break;
+    //     }
+    //     // Effettua la richiesta API
+    //     const response = await fetch(`${apiUrl}&${new URLSearchParams(params)}`);
+    //     const data = await response.json();
+    //     setRecipes(data.results);
+    //   } catch (error) {
+    //     console.error('Errore nel recupero delle ricette:', error);
+    //   }
+    // };
 
-    getRecipesBySection();
+    // getRecipesBySection();
   }, []);
-
 
   //   // Effettua la chiamata API per ottenere le ricette
   //   const fetchRecipes = async () => {
@@ -70,7 +87,7 @@ const Home = () => {
     const shouldShuffle =
       !lastShuffleDate || currentDate.toDateString() !== new Date(lastShuffleDate).toDateString();
 
-    if (shouldShuffle && currentDate.getHours() === 0) {
+    if (shouldShuffle) {
 
       // Escludi le ricette già mostrate nei giorni precedenti
       const newRecipesToDisplay = recipes.filter(recipe => !displayedRecipes.includes(recipe.id));
@@ -84,13 +101,15 @@ const Home = () => {
 
       // Aggiorna lo stato con le nuove ricette mescolate
       setShuffledRecipes(newShuffledRecipes);
+    } else {
+      setShuffledRecipes(displayedRecipes);
     }
+    
   }, [recipes]);
-
+  
   return (
     <>
-      {shuffledRecipes.length > 0 && <RecipeGallery recipes={shuffledRecipes} />}
-      
+      {shuffledRecipes.length > 0 && <RecipeGallery recipes={shuffledRecipes.slice(0, 5)} />}
     </>
   );
 }
