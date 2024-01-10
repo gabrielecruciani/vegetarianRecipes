@@ -6,26 +6,32 @@ import shuffle from 'lodash/shuffle';
 const Home = () => {
   const [recipes, setRecipes] = useState([]);
   const [shuffledRecipes, setShuffledRecipes] = useState([]);
-
-  const getRecipes = async () => {
-    try {
-      const apiKey = 'daca3440ea2a4e63a9a1ed61b43285db';
-      const apiUrl = `https://api.spoonacular.com/recipes/complexSearch?diet=vegetarian&apiKey=${apiKey}`;
-
-      const response = await fetch(apiUrl);
-      const data = await response.json();
-
-      setRecipes(data.results);
-    } catch (error) {
-      console.error('Errore nel recupero delle ricette:', error);
-    }
-  };
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    if (recipes.length === 0) {
-      getRecipes();
-    }
 
+    const getRecipes = async () => {
+      try {
+        const apiKey = '3bb58e29d57d400199eda4cbd9b683b4';
+        const apiUrl = `https://api.spoonacular.com/recipes/complexSearch?diet=vegetarian&apiKey=${apiKey}`;
+  
+        const response = await fetch(apiUrl);
+        const dataFile = await response.json();
+        setData (dataFile);
+
+        setRecipes((prevValue) => {
+          if (prevValue.length === 0) {
+            return dataFile.results;
+          }
+          return prevValue;
+        });
+
+      } catch (error) {
+        console.error('Errore nel recupero delle ricette:', error);
+      }
+    };
+
+    getRecipes();
     // const getRecipesBySection = async (params) => {
 
     //   try {
