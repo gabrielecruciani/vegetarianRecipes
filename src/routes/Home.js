@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import RecipesGallery from '../components/Carousel/RecipesGallery';
 import './Home.css';
-import SearchData from '../SearchData.json';
 import lensImage from '../components/images/lens.png';
 
 const HomeForNow = () => {
@@ -27,12 +26,10 @@ const HomeForNow = () => {
 
   const getResponse = async (apiKey, dishTypes) => {
 
-    //BLOCCO DI CODICE DA USARE NON IN LOCALE E SOSTITUIRE IL CONST DATA ATTIVO
     const apiUrl = `https://api.spoonacular.com/recipes/complexSearch?&query=${query}&addRecipeInformation=true&diet=vegetarian&type=${dishTypes}&apiKey=${apiKey}&number=100&offset=0`
     const response = await fetch(apiUrl);
     const data = await response.json();
 
-    // const data = SearchData;
     return data;
   }
 
