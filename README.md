@@ -17,7 +17,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<div style="display:flex;" align="center">
+<div style="display:flex; justify-content:center;">
   <img src="public/screen.png" alt="VegRecipes"/>
   <img src="public/dark.png" alt="VegRecipes"/>
 </div>
