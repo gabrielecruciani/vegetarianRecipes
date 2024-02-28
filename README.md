@@ -1,7 +1,3 @@
-# vegeterianRecipes
-
-
-
 <br />
 <div align="center">
   <h2 align="center">VegeterianRecipes</h2>
@@ -22,7 +18,7 @@
 ## About The Project
 
 <div align="center">
-  <img src="public/screen.png" width="622.5" height="417.75" alt="counterJs"/>
+  <img src="public/screen.png" alt="VegRecipes"/>
 </div>
 <br/>
 
@@ -43,7 +39,7 @@ The application had to be developed with react Framework (based on JavaScript), 
 <a href="https://developer.mozilla.org/en-US/docs/Glossary/HTML5" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/html5-colored.svg" width="36" height="36" alt="HTML5"/></a>
 <a href="https://www.w3.org/TR/CSS" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/css3-colored.svg" width="36" height="36" alt="CSS3"/></a>
 <a href="https://javascript.info/" target="_blank" rel="noreferrer"><img src="https://cdn.worldvectorlogo.com/logos/javascript-1.svg" width="36" height="36" alt="Windows"/></a>
-<a href="https://react.dev/" target="_blank" rel="noreferrer"><img src="https://worldvectorlogo.com/logo/react-2" width="36" height="36" alt="Windows"/></a>
+<a href="https://react.dev/" target="_blank" rel="noreferrer"><img src="https://cdn.worldvectorlogo.com/logos/react-2.svg" width="36" height="36" alt="Windows"/></a>
 </p>
 
 
